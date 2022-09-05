@@ -4,9 +4,16 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    @article = Article.new
   end
 
   def create
+    @article = Article.new(article_params)
+    if @article.save
+      redirect_to articles_path(@article)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -21,4 +28,14 @@ class ArticlesController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def set_articles
+  end
+
+  def article_params
+    params.require(:article).permit(:title, :content)
+  end
+
 end
