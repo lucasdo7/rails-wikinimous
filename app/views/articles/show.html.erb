@@ -4,3 +4,16 @@
   <hr>
   <%= @article.content %>
 </article>
+<br>
+
+<%= link_to edit_article_path(@article.id), class: 'btn btn-light btn-sm border' do %>
+  <i class="fa fa-pencil"></i> Edit this article
+<% end %>
+
+<%= link_to article_path(@article.id), data: {turbo_method: :delete, turbo_confirm: "Delete #{@article.title}?"}, class: 'btn btn-light btn-sm border' do %>
+  <i class="fa-regular fa-trash-can"></i> Delete this article
+<% end %>
+
+<%= link_to articles_path, class: 'btn btn-light btn-sm border' do %>
+  <i class="fa-solid fa-arrow-rotate-left"></i> back to articles
+<% end %>
